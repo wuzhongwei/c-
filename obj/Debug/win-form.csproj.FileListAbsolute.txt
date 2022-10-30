@@ -1,0 +1,10 @@
+D:\C#学习\CSharp第一季\win-form\bin\Debug\win-form.exe.config
+D:\C#学习\CSharp第一季\win-form\bin\Debug\win-form.exe
+D:\C#学习\CSharp第一季\win-form\bin\Debug\win-form.pdb
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win-form.csproj.AssemblyReference.cache
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win_form.Properties.Resources.resources
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win-form.csproj.GenerateResource.cache
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win-form.csproj.CoreCompileInputs.cache
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win-form.exe
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win-form.pdb
+D:\C#学习\CSharp第一季\win-form\obj\Debug\win_form.Form1.resources
