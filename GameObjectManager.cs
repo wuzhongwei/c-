@@ -15,7 +15,21 @@ namespace win_form
         private static List<NotMovethins> steelList = new List<NotMovethins>();
         private static NotMovethins boss;
         private static MyTank myTank;
+        private static List<EnemyTank> tankList = new List<EnemyTank>();
 
+
+        private static int enemyBornSpeed = 60;
+        private static int enemyBornCount = 60;
+        private static Point[] points = new Point[3];
+
+        public static void Start()
+        {
+            points[0].X = 0; points[0].Y = 0;
+
+            points[1].X = 7 * 30; points[1].Y = 0;
+            points[2].X = 14 * 30; points[2].Y = 0;
+
+        }
         public static void Update()
         {
             foreach (NotMovethins nm in wallList)
@@ -26,8 +40,63 @@ namespace win_form
             {
                 nm.Update();
             }
+            foreach(EnemyTank tank in tankList)
+            {
+                tank.Update();
+            }
             boss.Update();
             myTank.Update();
+            EnemyBorn();
+        }
+
+        private static void EnemyBorn()
+        {
+            enemyBornCount++;
+            if (enemyBornCount < enemyBornSpeed) return;
+
+            Random rd = new Random();
+            int index = rd.Next(0, 3);
+            Point position = points[index];
+            int enemyType = rd.Next(1, 5);
+            switch (enemyType) 
+            {
+                case 1:
+                    CreateEnemyTank1(position.X, position.Y);
+                    break;
+                case 2:
+                    CreateEnemyTank2(position.X, position.Y);
+                    break;
+                case 3:
+                    CreateEnemyTank3(position.X, position.Y);
+                    break;
+                case 4:
+                    CreateEnemyTank4(position.X, position.Y);
+                    break;
+            }
+
+
+            enemyBornCount = 0;
+        }
+
+        private static void CreateEnemyTank1(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 2, Resources.GrayDown, Resources.GrayUp, Resources.GrayRight,Resources.GrayLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank2(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 2, Resources.GreenDown, Resources.GreenUp, Resources.GreenRight, Resources.GreenLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank3(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 4, Resources.QuickDown, Resources.QuickUp, Resources.QuickRight, Resources.QuickLeft);
+            tankList.Add(tank);
+        }
+        private static void CreateEnemyTank4(int x, int y)
+        {
+            EnemyTank tank = new EnemyTank(x, y, 1, Resources.SlowDown, Resources.SlowUp, Resources.SlowRight, Resources.SlowLeft);
+            tankList.Add(tank);
         }
 
         public static NotMovethins IsCollidedWall(Rectangle rt)

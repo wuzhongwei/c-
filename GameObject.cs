@@ -18,7 +18,7 @@ namespace win_form
 
         protected abstract Image GetImage(); // 抽象方法，需要子类去实现
 
-        public void DrawSelf()
+        public virtual void DrawSelf()
         {
             Graphics g = GameFramework.g;
             g.DrawImage(GetImage(), X, Y);

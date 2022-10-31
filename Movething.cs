@@ -9,25 +9,27 @@ namespace win_form
 {
     enum Direction
     {
-        Up,
-        Down,
-        Left,
-        Right
+        Up=0,
+        Down=1,
+        Left=2,
+        Right=3
 
     }
     class Movething : GameObject
     {
+        private Object _lock = new object();
         public Bitmap BitmapUp { get; set; }
         public Bitmap BitmapDown { get; set; }
         public Bitmap BitmapLeft { get; set; }
         public Bitmap BitmapRight { get; set; }
+        
         public int Speed { get; set; }
         private Direction dir;
         public Direction Dir { get { return dir; } 
             set {
                 dir = value;
                 Bitmap bmp = null;
-                switch(dir)
+                switch (dir)
                 {
                     case Direction.Up:
                         bmp = BitmapUp;
@@ -43,8 +45,13 @@ namespace win_form
                         break;
 
                 }
-                Width = bmp.Width;
-                Height = bmp.Height;
+                lock (_lock)
+                {
+                    Width = bmp.Width;
+                    Height = bmp.Height;
+                }
+                
+                
             } 
         }
 
@@ -68,6 +75,15 @@ namespace win_form
             }
             bitmap.MakeTransparent(Color.Black);
             return bitmap;
+        }
+
+        public override void DrawSelf()
+        {
+            lock (_lock)
+            {
+                base.DrawSelf();
+            }
+            
         }
     }
 }

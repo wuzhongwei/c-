@@ -13,6 +13,7 @@ namespace win_form
         public static Graphics g;
         public static void Start()
         {
+            GameObjectManager.Start();
             GameObjectManager.CreateMap();
             GameObjectManager.CreateMyTank();
         }
