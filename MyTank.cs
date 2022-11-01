@@ -135,7 +135,36 @@ namespace win_form
                     Dir = Direction.Right;
                     IsMoving = true;
                     break;
+                case Keys.Space:
+                    Attack();
+                    break;
             }
+        }
+        private void Attack()
+        {
+            int x = this.X;
+            int y = this.Y;
+
+            switch(Dir)
+            {
+                case Direction.Up:
+                    x = x + Width / 2;
+                    break;
+                case Direction.Down:
+                    x = x + Width / 2;
+                    y += Height;
+                    break;
+                case Direction.Left:
+                    y = y + Height / 2;
+                    break;
+                case Direction.Right:
+                    x += Width;
+                    y = y + Height / 2;
+                    break;
+
+            }
+
+            GameObjectManager.CreateBullet(x,y,Tag.MyTank,Dir);
         }
         public void KeyUp(KeyEventArgs args)
         {

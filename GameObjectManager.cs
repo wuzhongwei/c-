@@ -16,6 +16,7 @@ namespace win_form
         private static NotMovethins boss;
         private static MyTank myTank;
         private static List<EnemyTank> tankList = new List<EnemyTank>();
+        private static List<Bullet> bulletLit = new List<Bullet>();
 
 
         private static int enemyBornSpeed = 60;
@@ -44,9 +45,19 @@ namespace win_form
             {
                 tank.Update();
             }
+            foreach (Bullet bullet in bulletLit)
+            {
+                bullet.Update();
+            }
             boss.Update();
             myTank.Update();
             EnemyBorn();
+        }
+
+        public static void CreateBullet(int x, int y, Tag tag, Direction dir)
+        {
+            Bullet bullet = new Bullet(x, y,5,dir,tag);
+            bulletLit.Add(bullet);
         }
 
         private static void EnemyBorn()
